@@ -1,0 +1,50 @@
+<h3>予定一覧</h3>
+
+<h3>本日の日付 / <%= Time.now.to_s(:datetime_jp) %><h3>
+
+<% if flash[:notice] %>
+<p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+<thead>
+<tr>
+    <th>id</th>
+    <th>タイトル</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>終日</th>
+    <th>スケジュールメモ</th>
+    <th>更新日</th>
+    <th>詳細</th>
+    <th>予定編集</th>
+    <th>削除</th>
+</tr>
+</thead>
+
+<tbody>
+<% @scheduledates.each do |scheduledate| %>
+    <tr>
+    <td><%= scheduledate.id %></td>
+    <td><%= scheduledate.title %></td>
+    <td><%= scheduledate.start.strftime('%Y/%m/%d ') %></td>
+    <td><%= scheduledate.end_date.strftime('%Y/%m/%d ') %></td>
+    <td><%= scheduledate.check ? "○" : ""  %></td>
+    <td><%= scheduledate.memo %></td>
+    <td><%= scheduledate.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
+    <td><%= link_to "詳細", scheduledate %></td>
+    <td><%= link_to "編集", [:edit, scheduledate] %></td>
+    <td><%= button_to "削除", scheduledate , method: "delete", remote: true, data: { confirm: '本当に削除しますか?', disable_with: 'loading...' }%></td>
+    </tr>
+<% end %>
+</tbody>
+</table>
+
+
+<p> 予定の合計数</p>
+<%= Scheduledate.count %>
+
+
+
+<p><%= link_to "予定新規登録", "/scheduledates/new" %></p>
+

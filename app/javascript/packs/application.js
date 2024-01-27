@@ -11,3 +11,8 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+document.getElementById("saku").addEventListener("click", function(){
+windou.confirm("削除しますか")}, false);
+    

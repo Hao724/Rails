@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      scheduledate:
+        title: タイトル
+        end_date: 終了日
+        start: 開始日
+        memo: スケジュールメモ
+        
+    errors:
+      models:
+        scheduledate:
+          blank: が未入力です
+        attributes:
+          title:
+          too_short: は1文字以上20文字以下で入力してください
+          memo:
+          too_short: 500文字以下で入力してください
